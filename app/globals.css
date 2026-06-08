@@ -1,0 +1,93 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 210 20% 98%;
+    --foreground: 224 24% 16%;
+    --card: 0 0% 100%;
+    --card-foreground: 224 24% 16%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 24% 16%;
+    --primary: 175 72% 28%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 220 14% 94%;
+    --secondary-foreground: 224 24% 16%;
+    --muted: 220 14% 94%;
+    --muted-foreground: 220 9% 42%;
+    --accent: 220 14% 94%;
+    --accent-foreground: 224 24% 16%;
+    --destructive: 0 78% 52%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 220 13% 88%;
+    --input: 220 13% 88%;
+    --ring: 175 72% 28%;
+    --radius: 0.5rem;
+  }
+
+  .dark {
+    --background: 222 28% 7%;
+    --foreground: 220 18% 92%;
+    --card: 224 24% 10%;
+    --card-foreground: 220 18% 92%;
+    --popover: 224 24% 10%;
+    --popover-foreground: 220 18% 92%;
+    --primary: 174 68% 44%;
+    --primary-foreground: 180 25% 8%;
+    --secondary: 222 18% 16%;
+    --secondary-foreground: 220 18% 92%;
+    --muted: 222 18% 16%;
+    --muted-foreground: 220 10% 67%;
+    --accent: 222 18% 16%;
+    --accent-foreground: 220 18% 92%;
+    --destructive: 0 72% 48%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 222 16% 20%;
+    --input: 222 16% 20%;
+    --ring: 174 68% 44%;
+  }
+
+  * {
+    @apply border-border;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply min-h-screen bg-background font-sans text-foreground antialiased;
+    font-feature-settings: "rlig" 1, "calt" 1;
+  }
+
+  ::selection {
+    background: hsl(var(--primary) / 0.18);
+  }
+}
+
+@layer utilities {
+  .soft-grid {
+    background-image:
+      linear-gradient(to right, hsl(var(--border) / 0.45) 1px, transparent 1px),
+      linear-gradient(to bottom, hsl(var(--border) / 0.45) 1px, transparent 1px);
+    background-size: 36px 36px;
+  }
+
+  .scrollbar-clean {
+    scrollbar-width: thin;
+    scrollbar-color: hsl(var(--muted-foreground) / 0.35) transparent;
+  }
+
+  .scrollbar-clean::-webkit-scrollbar {
+    width: 9px;
+    height: 9px;
+  }
+
+  .scrollbar-clean::-webkit-scrollbar-thumb {
+    background: hsl(var(--muted-foreground) / 0.25);
+    border-radius: 999px;
+    border: 2px solid transparent;
+    background-clip: padding-box;
+  }
+}
