@@ -1,5 +1,5 @@
-import { AdminManagementPage } from "@/components/admin/admin-management-page";
+import { redirect } from "next/navigation";
 
 export default function AdminManagementRoute() {
-  return <AdminManagementPage />;
+  redirect("/admin/tickets");
 }

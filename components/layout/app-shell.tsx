@@ -66,13 +66,13 @@ export function AppShell({
             match: "exact"
           },
           {
-            label: "Kanban",
-            href: "/admin/kanban",
+            label: "Tickets",
+            href: "/admin/tickets",
             icon: ClipboardList,
             match: "startsWith"
           },
           {
-            label: "Gestion de Usuarios",
+            label: "Usuarios",
             href: "/admin/users",
             icon: Users,
             match: "startsWith"
@@ -81,12 +81,6 @@ export function AppShell({
             label: "Registro",
             href: "/admin/registro",
             icon: Archive,
-            match: "startsWith"
-          },
-          {
-            label: "Gestion admin",
-            href: "/admin/gestion",
-            icon: ShieldCheck,
             match: "startsWith"
           }
         ]

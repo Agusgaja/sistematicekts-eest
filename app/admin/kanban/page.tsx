@@ -1,5 +1,5 @@
-import { AdminKanbanPage } from "@/components/admin/admin-kanban-page";
+import { redirect } from "next/navigation";
 
 export default function AdminKanbanRoute() {
-  return <AdminKanbanPage />;
+  redirect("/admin/tickets");
 }

@@ -13,22 +13,22 @@ const priorityStyles: Record<
 > = {
   "SIN ASIGNAR": {
     className:
-      "border-slate-200 bg-slate-50 text-slate-700 dark:border-slate-800 dark:bg-slate-950/50 dark:text-slate-200",
+      "bg-slate-500 border-transparent text-white hover:bg-slate-500/90 dark:bg-slate-700 dark:text-slate-100",
     icon: Minus
   },
   BAJA: {
     className:
-      "border-emerald-200 bg-emerald-50 text-emerald-700 dark:border-emerald-900/60 dark:bg-emerald-950/50 dark:text-emerald-200",
+      "bg-emerald-600 border-transparent text-white hover:bg-emerald-600/90 dark:bg-emerald-700 dark:text-emerald-100",
     icon: TrendingDown
   },
   MEDIA: {
     className:
-      "border-amber-200 bg-amber-50 text-amber-700 dark:border-amber-900/60 dark:bg-amber-950/50 dark:text-amber-200",
+      "bg-orange-500 border-transparent text-white hover:bg-orange-500/90 dark:bg-orange-600 dark:text-orange-100",
     icon: Circle
   },
   ALTA: {
     className:
-      "border-red-200 bg-red-50 text-red-700 dark:border-red-900/60 dark:bg-red-950/50 dark:text-red-200",
+      "bg-red-600 border-transparent text-white hover:bg-red-600/90 dark:bg-red-700 dark:text-red-100",
     icon: TrendingUp
   }
 };

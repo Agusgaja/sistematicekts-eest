@@ -1,6 +1,7 @@
 "use client";
 
 import { FormEvent, useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { ClipboardList, ListChecks, Plus, RotateCcw, TicketPlus } from "lucide-react";
 
 import { useSessionGuard } from "@/components/auth/use-session-guard";
@@ -37,6 +38,7 @@ import {
 const statusOrder: TicketStatus[] = ["ABIERTO", "EN PROCESO", "RESUELTO"];
 
 export function UserDashboard() {
+  const router = useRouter();
   const { user } = useSessionGuard(["USUARIO"]);
   const [tickets, setTickets] = useState<Ticket[]>([]);
   const [area, setArea] = useState<TicketArea | undefined>();
@@ -228,7 +230,11 @@ export function UserDashboard() {
           {tickets.length > 0 ? (
             <div className="grid gap-3">
               {tickets.map((ticket) => (
-                <TicketCard key={ticket.id} ticket={ticket} />
+                <TicketCard
+                  key={ticket.id}
+                  onClick={(t) => router.push(`/dashboard/tickets/${t.id}`)}
+                  ticket={ticket}
+                />
               ))}
             </div>
           ) : (

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import {
   CalendarClock,
   ClipboardList,
@@ -13,7 +14,6 @@ import { useTechnicianTickets } from "@/components/tecnico/use-technician-ticket
 import { AppShell } from "@/components/layout/app-shell";
 import { LoadingScreen } from "@/components/layout/loading-screen";
 import { TicketCard } from "@/components/tickets/ticket-card";
-import { TicketDetailSheet } from "@/components/tickets/ticket-detail-sheet";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { StatusBadge } from "@/components/tickets/status-badge";
@@ -23,11 +23,10 @@ import { TICKET_STATUSES, type TicketStatus } from "@/types/ticket";
 type StatusFilter = "TODOS" | TicketStatus;
 
 export function TecnicoDashboard() {
+  const router = useRouter();
   const {
     user,
     tickets,
-    selectedTicket,
-    setSelectedTicket,
     handleStatusChange,
     handleAddObservation
   } = useTechnicianTickets();
@@ -185,7 +184,7 @@ export function TecnicoDashboard() {
               {filteredTickets.map((ticket) => (
                 <TicketCard
                   key={ticket.id}
-                  onClick={setSelectedTicket}
+                  onClick={(t) => router.push(`/tecnico/tickets/${t.id}`)}
                   showTechnician
                   showUser
                   ticket={ticket}
@@ -249,19 +248,6 @@ export function TecnicoDashboard() {
           )}
         </section>
       </div>
-
-      <TicketDetailSheet
-        allowInternalComments={false}
-        onAddNote={(ticketId, text) => handleAddObservation(ticketId, text)}
-        onOpenChange={(open) => {
-          if (!open) {
-            setSelectedTicket(null);
-          }
-        }}
-        onStatusChange={handleStatusChange}
-        open={Boolean(selectedTicket)}
-        ticket={selectedTicket}
-      />
     </AppShell>
   );
 }

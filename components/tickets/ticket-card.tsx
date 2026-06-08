@@ -43,31 +43,31 @@ export function TicketCard({
         </div>
       </div>
 
-      <p className="mt-3 line-clamp-3 text-sm leading-6 text-muted-foreground">
-        {shortText(ticket.description, 150)}
+      <p className="mt-2 line-clamp-1 text-xs text-muted-foreground">
+        {ticket.description}
       </p>
 
-      <div className="mt-4 grid gap-2 text-xs text-muted-foreground">
+      <div className="mt-3 flex flex-wrap items-center gap-x-4 gap-y-1.5 text-xs text-muted-foreground border-t pt-2.5">
         {showUser ? (
-          <div className="flex items-center gap-2">
-            <UserRound className="h-3.5 w-3.5" />
-            <span className="truncate">{ticket.userName}</span>
+          <div className="flex items-center gap-1.5 min-w-0">
+            <UserRound className="h-3 w-3 shrink-0 text-primary/70" />
+            <span className="truncate font-medium text-foreground/80">{ticket.userName}</span>
           </div>
         ) : null}
         {showTechnician ? (
-          <div className="flex items-center gap-2">
-            <Users className="h-3.5 w-3.5" />
-            <span className="truncate">
+          <div className="flex items-center gap-1.5 min-w-0">
+            <Users className="h-3 w-3 shrink-0 text-primary/70" />
+            <span className="truncate font-medium text-foreground/80">
               {ticket.assignedTechnicianName ?? "Sin asignar"}
             </span>
           </div>
         ) : null}
-        <div className="flex items-center gap-2">
-          <MapPin className="h-3.5 w-3.5" />
+        <div className="flex items-center gap-1.5 min-w-0">
+          <MapPin className="h-3 w-3 shrink-0 text-primary/70" />
           <span className="truncate">{ticket.area}</span>
         </div>
-        <div className="flex items-center gap-2">
-          <CalendarDays className="h-3.5 w-3.5" />
+        <div className="flex items-center gap-1.5 min-w-0 ml-auto">
+          <CalendarDays className="h-3 w-3 shrink-0" />
           <span>{formatDate(ticket.createdAt)}</span>
         </div>
       </div>

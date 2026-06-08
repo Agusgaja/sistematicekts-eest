@@ -1,12 +1,12 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
+import { useRouter } from "next/navigation";
 import { Search, ShieldCheck, SlidersHorizontal, CheckCircle2 } from "lucide-react";
 
 import { useSessionGuard } from "@/components/auth/use-session-guard";
 import { AppShell } from "@/components/layout/app-shell";
 import { LoadingScreen } from "@/components/layout/loading-screen";
-import { TicketDetailSheet } from "@/components/tickets/ticket-detail-sheet";
 import { PriorityBadge } from "@/components/tickets/priority-badge";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -31,9 +31,9 @@ type CategoryFilter = "TODAS" | TicketCategory;
 type PriorityFilter = "TODAS" | TicketPriority;
 
 export function TecnicoResueltosPage() {
+  const router = useRouter();
   const { user } = useSessionGuard(["TECNICO"]);
   const [tickets, setTickets] = useState<Ticket[]>([]);
-  const [selectedTicket, setSelectedTicket] = useState<Ticket | null>(null);
   const [query, setQuery] = useState("");
   const [categoryFilter, setCategoryFilter] = useState<CategoryFilter>("TODAS");
   const [priorityFilter, setPriorityFilter] = useState<PriorityFilter>("TODAS");
@@ -197,7 +197,11 @@ export function TecnicoResueltosPage() {
               </thead>
               <tbody>
                 {filteredTickets.map((ticket) => (
-                  <tr className="border-t transition-colors hover:bg-muted/30" key={ticket.id}>
+                  <tr
+                    className="border-t transition-colors hover:bg-muted/30 cursor-pointer"
+                    key={ticket.id}
+                    onClick={() => router.push(`/tecnico/tickets/${ticket.id}`)}
+                  >
                     <td className="px-4 py-3 font-semibold">#{ticket.id}</td>
                     <td className="px-4 py-3">{ticket.userName}</td>
                     <td className="px-4 py-3">{ticket.area}</td>
@@ -213,9 +217,9 @@ export function TecnicoResueltosPage() {
                     <td className="px-4 py-3 text-muted-foreground">
                       {ticket.fechaResolucion ? formatDate(ticket.fechaResolucion) : "-"}
                     </td>
-                    <td className="px-4 py-3">
+                    <td className="px-4 py-3" onClick={(e) => e.stopPropagation()}>
                       <Button
-                        onClick={() => setSelectedTicket(ticket)}
+                        onClick={() => router.push(`/tecnico/tickets/${ticket.id}`)}
                         size="sm"
                         type="button"
                         variant="outline"
@@ -241,19 +245,6 @@ export function TecnicoResueltosPage() {
         </section>
       </div>
 
-      <TicketDetailSheet
-        allowInternalComments={false}
-        onAddNote={() => {}}
-        onOpenChange={(open) => {
-          if (!open) {
-            setSelectedTicket(null);
-          }
-        }}
-        onStatusChange={() => {}}
-        open={Boolean(selectedTicket)}
-        readOnly
-        ticket={selectedTicket}
-      />
     </AppShell>
   );
 }
