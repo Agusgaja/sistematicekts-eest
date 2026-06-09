@@ -60,7 +60,7 @@ export function AdminDashboard() {
       <div className="space-y-6">
         {/* Métricas con diseño premium de 6 tarjetas */}
         <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6">
-          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20">
+          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20 animate-card-enter">
             <div className="flex items-center justify-between gap-3 text-muted-foreground">
               <span className="text-xs font-bold uppercase tracking-wider">Total Activos</span>
               <LayoutDashboard className="h-4 w-4 text-blue-500" />
@@ -68,7 +68,7 @@ export function AdminDashboard() {
             <p className="mt-2 text-3xl font-extrabold tracking-tight">{metrics.total}</p>
           </div>
 
-          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20">
+          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20 animate-card-enter delay-50">
             <div className="flex items-center justify-between gap-3 text-muted-foreground">
               <span className="text-xs font-bold uppercase tracking-wider">Sin Asignar</span>
               <UserX className="h-4 w-4 text-slate-500" />
@@ -76,7 +76,7 @@ export function AdminDashboard() {
             <p className="mt-2 text-3xl font-extrabold tracking-tight text-slate-400">{metrics.unassigned}</p>
           </div>
 
-          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20">
+          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20 animate-card-enter delay-100">
             <div className="flex items-center justify-between gap-3 text-muted-foreground">
               <span className="text-xs font-bold uppercase tracking-wider">Alta Prioridad</span>
               <Flame className="h-4 w-4 text-red-500 fill-red-500/10" />
@@ -84,7 +84,7 @@ export function AdminDashboard() {
             <p className="mt-2 text-3xl font-extrabold tracking-tight text-red-500">{metrics.highPriority}</p>
           </div>
 
-          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20">
+          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20 animate-card-enter delay-150">
             <div className="flex items-center justify-between gap-3 text-muted-foreground">
               <span className="text-xs font-bold uppercase tracking-wider">En Proceso</span>
               <RefreshCw className="h-4 w-4 text-amber-500 animate-spin-slow" />
@@ -92,7 +92,7 @@ export function AdminDashboard() {
             <p className="mt-2 text-3xl font-extrabold tracking-tight text-amber-500">{metrics.inProcess}</p>
           </div>
 
-          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20">
+          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20 animate-card-enter delay-200">
             <div className="flex items-center justify-between gap-3 text-muted-foreground">
               <span className="text-xs font-bold uppercase tracking-wider">Resueltos</span>
               <ClipboardList className="h-4 w-4 text-emerald-500" />
@@ -100,7 +100,7 @@ export function AdminDashboard() {
             <p className="mt-2 text-3xl font-extrabold tracking-tight text-emerald-500">{metrics.resolved}</p>
           </div>
 
-          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20">
+          <div className="rounded-lg border bg-card p-4 shadow-sm relative overflow-hidden transition-all hover:shadow-md hover:border-primary/20 animate-card-enter delay-250">
             <div className="flex items-center justify-between gap-3 text-muted-foreground">
               <span className="text-xs font-bold uppercase tracking-wider">Archivados</span>
               <Archive className="h-4 w-4 text-purple-500" />
@@ -110,7 +110,7 @@ export function AdminDashboard() {
         </section>
 
         {/* Accesos rápidos actualizados */}
-        <section className="grid gap-4 lg:grid-cols-3">
+        <section className="grid gap-4 lg:grid-cols-3 animate-card-enter delay-300">
           <Link
             className="group rounded-lg border bg-card p-5 shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-soft"
             href="/admin/tickets"

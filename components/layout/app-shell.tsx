@@ -153,12 +153,15 @@ export function AppShell({
     return (
       <Link
         className={cn(
-          "flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-colors hover:bg-accent hover:text-foreground",
-          active && "bg-accent text-foreground"
+          "relative flex items-center gap-3 rounded-md px-3 py-2 text-sm font-medium text-muted-foreground transition-all duration-150 ease-out hover:bg-accent/60 hover:text-foreground active:scale-[0.98]",
+          active && "bg-accent/80 text-foreground font-semibold"
         )}
         href={item.href}
         key={item.label}
       >
+        {active && (
+          <span className="absolute left-0 top-1/2 -translate-y-1/2 h-5.5 w-1 rounded-r-md bg-primary" />
+        )}
         <Icon className="h-4 w-4" />
         {item.label}
       </Link>
@@ -233,7 +236,7 @@ export function AppShell({
           {navItems.map((item) => renderNavItem(item))}
         </nav>
 
-        <main className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+        <main key={pathname} className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8 animate-page-enter">
           {children}
         </main>
       </div>

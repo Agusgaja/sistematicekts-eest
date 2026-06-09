@@ -19,6 +19,7 @@ import { LoadingScreen } from "@/components/layout/loading-screen";
 import { PriorityBadge } from "@/components/tickets/priority-badge";
 import { StatusBadge } from "@/components/tickets/status-badge";
 import { TicketTimeline } from "@/components/tickets/ticket-timeline";
+import { TicketDetailSkeleton } from "@/components/tickets/ticket-detail-skeleton";
 import { Button } from "@/components/ui/button";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
@@ -107,8 +108,21 @@ export default function AdminTicketDetail({ params }: PageProps) {
     reloadTicket();
   }
 
-  if (!user || !ticket) {
+  if (!user) {
     return <LoadingScreen />;
+  }
+
+  if (!ticket) {
+    return (
+      <AppShell
+        description="Recuperando información de soporte..."
+        mode="admin"
+        title="Cargando Ticket..."
+        user={user}
+      >
+        <TicketDetailSkeleton backPath="/admin/tickets" backLabel="Volver a Tickets" />
+      </AppShell>
+    );
   }
 
   const technicalObservations = ticket.notes.filter((note) => note.type === "OBSERVACION");
@@ -134,7 +148,7 @@ export default function AdminTicketDetail({ params }: PageProps) {
       <div className="grid gap-6 lg:grid-cols-12">
         {/* Columna Izquierda: Información General y Controles de Edición */}
         <div className="space-y-6 lg:col-span-5">
-          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-5 backdrop-blur">
+          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-5 backdrop-blur animate-card-enter">
             <div className="flex items-center justify-between border-b pb-3">
               <span className="text-sm font-bold text-muted-foreground uppercase tracking-wide">General</span>
               <div className="flex gap-2">
@@ -199,7 +213,7 @@ export default function AdminTicketDetail({ params }: PageProps) {
           </div>
 
           {/* Controles de Estado y Asignación */}
-          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-4 backdrop-blur">
+          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-4 backdrop-blur animate-card-enter delay-100">
             <h3 className="text-sm font-bold tracking-wide uppercase text-muted-foreground border-b pb-2">Controles Operativos</h3>
             
             <div className="space-y-2">
@@ -262,7 +276,7 @@ export default function AdminTicketDetail({ params }: PageProps) {
         {/* Columna Derecha: Observaciones Técnicas y Timeline Visual */}
         <div className="space-y-6 lg:col-span-7">
           {/* Observaciones Técnicas */}
-          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-4 backdrop-blur">
+          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-4 backdrop-blur animate-card-enter delay-150">
             <div className="flex items-center justify-between border-b pb-2">
               <h3 className="text-sm font-bold tracking-wide uppercase text-muted-foreground flex items-center gap-1.5">
                 <MessageSquareCode className="h-4 w-4" />
@@ -307,7 +321,7 @@ export default function AdminTicketDetail({ params }: PageProps) {
           </div>
 
           {/* Timeline Visual del Historial */}
-          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-5 backdrop-blur">
+          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-5 backdrop-blur animate-card-enter delay-200">
             <h3 className="text-sm font-bold tracking-wide uppercase text-muted-foreground border-b pb-2">
               Historial y Auditoría Cronológica
             </h3>

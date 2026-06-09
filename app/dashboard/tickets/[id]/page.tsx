@@ -18,6 +18,7 @@ import { LoadingScreen } from "@/components/layout/loading-screen";
 import { PriorityBadge } from "@/components/tickets/priority-badge";
 import { StatusBadge } from "@/components/tickets/status-badge";
 import { TicketTimeline } from "@/components/tickets/ticket-timeline";
+import { TicketDetailSkeleton } from "@/components/tickets/ticket-detail-skeleton";
 import { Button } from "@/components/ui/button";
 import { getTickets } from "@/lib/tickets";
 import { formatDate, formatDuration } from "@/lib/utils";
@@ -48,8 +49,21 @@ export default function UsuarioTicketDetail({ params }: PageProps) {
     }
   }, [user, ticketId, router]);
 
-  if (!user || !ticket) {
+  if (!user) {
     return <LoadingScreen />;
+  }
+
+  if (!ticket) {
+    return (
+      <AppShell
+        description="Recuperando estado de tu solicitud..."
+        mode="user"
+        title="Cargando Ticket..."
+        user={user}
+      >
+        <TicketDetailSkeleton backPath="/dashboard" backLabel="Volver a Mis Tickets" />
+      </AppShell>
+    );
   }
 
   const technicalObservations = ticket.notes.filter((note) => note.type === "OBSERVACION");
@@ -75,7 +89,7 @@ export default function UsuarioTicketDetail({ params }: PageProps) {
       <div className="grid gap-6 lg:grid-cols-12">
         {/* Columna Izquierda: Ficha del Ticket */}
         <div className="space-y-6 lg:col-span-5">
-          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-5 backdrop-blur">
+          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-5 backdrop-blur animate-card-enter">
             <div className="flex items-center justify-between border-b pb-3">
               <span className="text-sm font-bold text-muted-foreground uppercase tracking-wide">Tu Solicitud</span>
               <div className="flex gap-2">
@@ -143,7 +157,7 @@ export default function UsuarioTicketDetail({ params }: PageProps) {
         {/* Columna Derecha: Observaciones Técnicas (Lectura) y Timeline */}
         <div className="space-y-6 lg:col-span-7">
           {/* Observaciones Técnicas (Modo Lectura) */}
-          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-4 backdrop-blur">
+          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-4 backdrop-blur animate-card-enter delay-100">
             <h3 className="text-sm font-bold tracking-wide uppercase text-muted-foreground border-b pb-2 flex items-center gap-1.5">
               <MessageSquareCode className="h-4 w-4" />
               Observaciones del Equipo Técnico
@@ -168,7 +182,7 @@ export default function UsuarioTicketDetail({ params }: PageProps) {
           </div>
 
           {/* Timeline Visual del Historial */}
-          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-5 backdrop-blur">
+          <div className="rounded-xl border bg-card/60 p-5 shadow-sm space-y-5 backdrop-blur animate-card-enter delay-180">
             <h3 className="text-sm font-bold tracking-wide uppercase text-muted-foreground border-b pb-2">
               Historial del Ticket
             </h3>

@@ -241,7 +241,7 @@ export function AdminTicketsPage() {
 
         {/* Renderizado de Vistas */}
         {activeTab === "tabla" ? (
-          <section className="rounded-lg border bg-card shadow-sm overflow-hidden">
+          <section className="rounded-lg border bg-card shadow-sm overflow-hidden animate-page-enter">
             <div className="overflow-x-auto scrollbar-clean">
               <table className="w-full min-w-[1000px] border-collapse text-left text-sm">
                 <thead className="bg-muted/40 text-xs uppercase text-muted-foreground border-b">
@@ -312,7 +312,7 @@ export function AdminTicketsPage() {
             ) : null}
           </section>
         ) : (
-          <section className="grid gap-4 xl:grid-cols-3">
+          <section className="grid gap-4 xl:grid-cols-3 animate-page-enter">
             {TICKET_STATUSES.map((status) => {
               const columnTickets = sortedTickets.filter(
                 (ticket) => ticket.status === status

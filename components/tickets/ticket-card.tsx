@@ -77,7 +77,7 @@ export function TicketCard({
   if (onClick) {
     return (
       <button
-        className="group w-full rounded-lg border bg-card p-4 text-left shadow-sm transition-all hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-soft focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
+        className="group w-full rounded-lg border bg-card p-4 text-left shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-primary/40 hover:shadow-md hover:shadow-primary/5 active:scale-[0.985] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
         draggable={draggable}
         onDragEnd={() => onDragEnd?.(ticket)}
         onDragStart={(event) => {
@@ -95,7 +95,7 @@ export function TicketCard({
 
   return (
     <article
-      className="rounded-lg border bg-card p-4 shadow-sm transition-colors hover:border-primary/30"
+      className="rounded-lg border bg-card p-4 shadow-sm transition-all duration-200 ease-out hover:-translate-y-0.5 hover:border-primary/30"
       draggable={draggable}
       onDragEnd={() => onDragEnd?.(ticket)}
       onDragStart={(event) => {
